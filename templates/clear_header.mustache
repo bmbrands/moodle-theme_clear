@@ -1,0 +1,37 @@
+{{#courseimage}}
+<div class="index-app-hero" style="background-image: url('{{{courseimage}}}')" >
+    <section class="container">
+      <div class="row">
+        <div class="col-12 p-0">
+            {{{ fullheader }}}
+        </div>
+        <div class="col-12 mt-5 h3 d-flex justify-content-around text-white">
+          <div class="w-75 text-center">
+            {{{extratext}}}
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+{{/courseimage}}
+{{^courseimage}}
+  <section class="container mt-5">
+      {{{ fullheader }}}
+  </section>
+{{/courseimage}}
+{{#js}}
+{{#courseimage}}
+    $(function () {
+        // parallax header
+        $(window).scroll(function() {
+          if ($(window).width() > 768) {
+            var scroll = $(window).scrollTop(),
+            slowScroll = scroll/4,
+            slowBg = slowScroll;
+
+            $('.index-app-hero').css("background-position", "center " + -slowBg + "px");
+          }
+        });
+    });
+{{/courseimage}}
+{{/js}}

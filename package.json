@@ -1,0 +1,31 @@
+{
+  "name": "moodle-theme_clear",
+  "version": "1.0.0",
+  "description": "Moodle theme clear",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all --parallel css-watch livereload",
+    "postcss": "postcss css/default.css -u autoprefixer -r",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/default.scss -o css/",
+    "css-watch": "node-sass -w scss --output-style expanded --source-map true --source-map-contents true --precision 6 scss/default.scss -o css/|postcss css/default.css -u autoprefixer -r",
+    "livereload": "livereload . -e mustache,scss,css -d -w 500"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmbrands/moodle-theme_clear.git"
+  },
+  "author": "Bas Brands <bas@moodle.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/bmbrands/moodle-theme_clear/issues"
+  },
+  "homepage": "https://github.com/bmbrands/moodle-theme_clear#readme",
+  "dependencies": {
+    "autoprefixer": "^9.7.4",
+    "cross-env": "^6.0.3",
+    "livereload": "^0.9.1",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0"
+  }
+}

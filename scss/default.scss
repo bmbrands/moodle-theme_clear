@@ -1,0 +1,211 @@
+// Bootstrap variables
+
+$white:    #fff !default;
+$gray-100: #f5f7f9 !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #373a3c !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$primary:       $blue !default;
+$secondary:     #6c757d !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+// Options
+$enable-rounded: true !default;
+
+$enable-gradients: true !default;
+
+// Body
+$body-color:    #212529 !default;
+
+// Fonts
+$font-size-base: 0.9375rem !default;
+$headings-font-weight:   300 !default;
+
+// Navbar
+$navbar-light-hover-color:          rgba($black, .9) !default;
+
+$navbar-dark-color:                 rgba($white, .9) !default;
+$navbar-dark-hover-color:           rgba($white, 1) !default;
+
+// Breadcrumbs
+$breadcrumb-padding-y:              .25rem !default;
+$breadcrumb-padding-x:              0 !default;
+$breadcrumb-item-padding:           .5rem !default;
+$breadcrumb-margin-bottom:          0 !default;
+$breadcrumb-bg:                     transparent !default;
+$breadcrumb-divider: "/" !default;
+$breadcrumb-divider-rtl: "/" !default;
+
+$link-color: #007bff;
+
+// Alerts
+$alert-border-width:                0 !default;
+
+$card-group-margin: .5rem;
+
+// stylelint-disable
+$theme-colors: () !default;
+$theme-colors: map-merge((
+    primary: $primary,
+    secondary: $gray-200,
+    success: $success,
+    info: $info,
+    warning: $orange,
+    danger: $danger,
+    light: $gray-100,
+    dark: $gray-800
+), $theme-colors);
+// stylelint-enable
+
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+$card-gutter: 1rem;
+
+// Import FontAwesome.
+@import "fontawesome";
+
+// Import All of Bootstrap
+@import "bootstrap";
+
+// Import Core moodle CSS
+@import "moodle";
+
+// Front page available courses. This is a custom feature of this theme.
+.card-deck.availablecourses {
+    margin-bottom: 2rem;
+    flex-basis: auto;
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .card-course-image {
+        display: flex;
+        flex: 1 1 auto;
+        .card-img {
+            display: flex;
+        }
+    }
+    @media (min-width: $screen-sm) {
+        .course-card-img {
+            height: 8rem;
+            width: 8rem;
+            background-position: center;
+            background-size: cover;
+        }
+    }
+    .dashboard-card-footer {
+        padding: 0.8rem;
+    }
+}
+
+.stretched-link {
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    // Just in case `pointer-events: none` is set on a parent
+    pointer-events: auto;
+    content: "";
+    // IE10 bugfix, see https://stackoverflow.com/questions/16947967/ie10-hover-pseudo-class-doesnt-work-without-background-color
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+// Hide all extra's on the page when guest users view content.
+body.guestuser {
+    &.pagelayout-incourse {
+        .navbar-bootswatch,
+        #page-footer-clear,
+        .clearheader,
+        .activity-navigation {
+            display: none !important;
+        }
+    }
+    #page-wrapper-clear #page-clear.container {
+        margin-top: 20px;
+        padding-left: 10px;
+    }
+    .clearheader {
+        padding-left: 10px;
+    }
+    div[role="main"] > h1 {
+        text-align: center;
+        @media (max-width: 767px) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// Our navbar looks different from Boost just to give this theme some identitiy.
+nav.fixed-top {
+    @extend .navbar-dark;
+    background-color: transparent;
+    background-image: linear-gradient(310deg,#272b53 0,#4f7296 90%);
+
+    .usermenu {
+        color: $navbar-dark-color;
+        .login a {
+            color: $navbar-dark-color;
+        }
+    }
+    a.dropdown-toggle,
+    a .usertext {
+        color: $navbar-dark-color;
+        @include hover-focus {
+            color: $navbar-dark-hover-color;
+        }
+
+        &.disabled {
+            color: $navbar-dark-disabled-color;
+        }
+    }
+    .dropdown-menu a .icon {
+        color: inherit !important; // stylelint-disable-line declaration-no-important
+    }
+}
+
+// White is boring.
+.path-login {
+    @include gradient-bg($primary);
+}
+
+// Replace this hard coded image with something more fun
+.bg-login-image {
+    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    background-position: center;
+    background-size: cover;
+}
+
+// Reset footer styles.
+.path-login #page-footer.bg-dark.text-light {
+    background-color: transparent !important;
+}

@@ -1,0 +1,29 @@
+<div class="d-flex uploadimagecontrols">
+
+    <!-- State 0/1 -->
+    <label id="uploadbutton" tabindex="0" class="btn btn-sm btn-secondary state-element state0 state1 ml-2 mt-2 mb-0" for="imagehandler-coverfiles-{{uniqid}}">
+        <span>
+            <i class="fa fa-camera fa-camera-alt"></i>
+        </span>
+       <input tabindex="-1" id="imagehandler-coverfiles-{{uniqid}}" name="imagehandler-coverfiles[]" type="file" class="sr-only input-coverfiles state-element state1" accept="{{accepttypes}}"/>
+    </label>
+
+    <!-- State 2 -->
+    <div id="imagehandler-changecoverimageconfirmation" class="mb-2 state-element state2 ml-2 mt-2">
+        <button class="btn btn-sm btn-success ok">{{#str}}save, admin{{/str}}</button>
+        <button class="btn btn-sm btn-danger cancel">{{#str}}cancel, moodle{{/str}}</button>
+    </div>
+
+    <!-- State 0/1 -->
+    {{#originalimage}}
+    <button data-action="cropimage" class="btn btn-sm btn-secondary crop-button mr-2 mt-2 ml-auto state-element state0 state1">
+        <i class="fa fa-crop"></i>
+    </button>
+    {{/originalimage}}
+
+    <!-- State 3 -->
+    <div id="imagehandler-cropcoverimageconfirmation" class="ml-auto mb-2 state-element state3 mr-2 mt-2">
+        <button class="btn btn-sm btn-success crop-result" data-action="crop-confirm">{{#str}}save, admin{{/str}}</button>
+        <button class="btn btn-sm btn-danger crop-result" data-action="crop-cancel">{{#str}}cancel, moodle{{/str}}</button>
+    </div>
+</div>

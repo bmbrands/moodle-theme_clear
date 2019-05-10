@@ -1,0 +1,38 @@
+<div class="imagehandler_wrapper position-relative">
+    <div id="imagehandler-{{uniqid}}" class="imagehandler state0 {{classes}}"
+        data-region="categoryimage"
+        data-action="imagehandler"
+        data-imageid="{{imageid}}"
+        data-original="{{originalimage}}"
+        data-default="{{defaultimage}}"
+        data-type="{{type}}"
+        {{#image}}
+            style="background-image: url('{{{image}}}');"
+        {{/image}}
+        {{^image}}
+            style="background-image: url('{{{defaultimage}}}');"
+        {{/image}}
+        >
+        {{#allowupload}}
+            {{>theme_clear/imagehandler_controls}}
+        {{/allowupload}}
+        {{{ content }}}
+    </div>
+</div>
+
+{{#js}}
+require(
+[
+    'jquery',
+    'theme_arupboost/imagehandler_updateimage'
+],
+function(
+    $,
+    UpdateImage
+) {
+
+    var root = $('.imagehandler_wrapper');
+    target = root.find("#imagehandler-{{uniqid}}");
+    UpdateImage.updateImage(target, 10000000, '{{uniqid}}');
+});
+{{/js}}

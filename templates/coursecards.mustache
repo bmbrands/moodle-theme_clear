@@ -1,0 +1,74 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_myoverview/view-cards
+
+    This template renders the cards view for the myoverview block.
+
+    Example context (json):
+    {
+        "courses": [
+            {
+                "name": "Assignment due 1",
+                "viewurl": "https://moodlesite/course/view.php?id=2",
+                "courseimage": "https://moodlesite/pluginfile/123/course/overviewfiles/123.jpg",
+                "fullname": "course 3",
+                "hasprogress": true,
+                "progress": 10,
+                "coursecategory": "Miscellaneous"
+            }
+        ]
+    }
+}}
+
+<div class="card-deck dashboard-card-deck availablecourses {{$classes}}{{/classes}}" role="list">
+{{#courses}}
+    <div class="card dashboard-card course-card border-0" role="listitem"
+        data-region="course-content"
+        data-course-id="{{{id}}}">
+
+        <div class="card-body d-flex flex-column" id="course-info-container-{{id}}-{{uniqid}}">
+            <div class="row no-gutters">
+                <div class="col-12">
+                    <div class="card-img dashboard-card-img rounded" style='background-image: url("{{{courseimage}}}");'>
+                        <span class="sr-only">{{#str}}aria:courseimage, theme_clear{{/str}}</span>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="coursename mr-2 d-flex text-truncate">
+                        <span class="sr-only">
+                            {{#str}}aria:coursename, theme_clear{{/str}}
+                        </span>
+                        <a href="{{viewurl}}" class="text-truncate stretched-link">{{fullname}}</a>
+                    </div>
+                    <div class="shortname mr-2 d-flex text-truncate">
+                        <span class="sr-only">
+                            {{#str}}aria:courseshortname, theme_clear{{/str}}
+                        </span>
+                        <div class="text-muted small muted w-100 mb-1 text-truncate">
+                            {{{shortname}}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary text-muted mt-3">
+                {{#shortentext}} 80, {{{summary}}} {{/shortentext}}
+            </div>
+        </div>
+    </div>
+{{/courses}}
+</div>

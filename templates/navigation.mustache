@@ -1,0 +1,27 @@
+<li class="dropdown nav-item">
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="workplace-menulink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="workplace-menu-{{uniqid}}"
+    >
+    	<i class="fa fa-th"></i>
+    </a>
+    <div id="workplace-menu-{{uniqid}}" data-region="workplace-menu-content" class="workplace-menu p-0 dropdown-menu wp-boxshadow-4" role="menu" aria-labelledby="workplace-menulink">
+        {{# flatnavigation }}
+            {{#action}}
+                <a class="dropdown-item" href="{{{action}}}" title="{{{text}}}">
+                    {{#icon.pix}}
+                        <span class="drawericon">
+                            {{#pix}}{{{icon.pix}}}, {{{icon.component}}}, {{{icon.alt}}}{{/pix}}
+                        </span>
+                    {{/icon.pix}}
+                    {{{text}}}
+                </a>
+            {{/action}}
+        {{/flatnavigation }}
+    </div>
+</li>
