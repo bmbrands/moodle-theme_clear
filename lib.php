@@ -54,7 +54,11 @@ function theme_clear_pluginfile($course, $cm, $context, $filearea, $args, $force
 function theme_clear_alter_css_urls(&$urls) {
     $urls = [];
     $theme = theme_config::load('clear');
-    //$csscontent = $theme->get_css_content();
+
+    $plugincss = new moodle_url('/theme/clear/css.php');
+    $plugincss->set_slashargument('/core/all.css');
+    $urls[] = $plugincss;
+
     $themecss = new moodle_url('/theme/clear/css.php');
     $themecss->set_slashargument('/theme/default.css');
     $urls[] = $themecss;
@@ -63,7 +67,5 @@ function theme_clear_alter_css_urls(&$urls) {
     $fontcss->set_slashargument('/fonts/fonts.css');
     $urls[] = $fontcss;
 
-    $plugincss = new moodle_url('/theme/clear/css.php');
-    $plugincss->set_slashargument('/core/all.css');
-    $urls[] = $plugincss;
+
 }

@@ -1,7 +1,7 @@
 // Bootstrap variables
 
 $white:    #fff !default;
-$gray-100: #f5f7f9 !default;
+$gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
@@ -12,19 +12,19 @@ $gray-800: #373a3c !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
-$blue:    #007bff !default;
+$blue:    #1177d1 !default;
 $indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
+$purple:  #613d7c !default;
 $pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
+$red:     #d9534f !default;
+$orange:  #f0ad4e !default;
+$yellow:  #ff7518 !default;
+$green:   #5cb85c !default;
 $teal:    #20c997 !default;
-$cyan:    #17a2b8 !default;
+$cyan:    #5bc0de !default;
 
 $primary:       $blue !default;
-$secondary:     #6c757d !default;
+$secondary:     $gray-800 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -33,22 +33,22 @@ $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 
 // Options
-$enable-rounded: true !default;
-
-$enable-gradients: true !default;
+$enable-rounded: false !default;
+$enable-responsive-font-sizes: true !default;
+$rfs-base-font-size: 0.8rem !default;
 
 // Body
-$body-color:    #212529 !default;
+$body-color:    $gray-800 !default;
 
 // Fonts
 $font-size-base: 0.9375rem !default;
 $headings-font-weight:   300 !default;
 
-// Navbar
-$navbar-light-hover-color:          rgba($black, .9) !default;
+$text-muted:    #6F7780 !default;
 
-$navbar-dark-color:                 rgba($white, .9) !default;
+// Navbar
 $navbar-dark-hover-color:           rgba($white, 1) !default;
+$navbar-light-hover-color:          rgba($black, .9) !default;
 
 // Breadcrumbs
 $breadcrumb-padding-y:              .25rem !default;
@@ -59,18 +59,22 @@ $breadcrumb-bg:                     transparent !default;
 $breadcrumb-divider: "/" !default;
 $breadcrumb-divider-rtl: "/" !default;
 
-$link-color: #007bff;
+// Floating elements positions
+$gototop-bottom-position: 50px !default;
 
 // Alerts
 $alert-border-width:                0 !default;
 
-$card-group-margin: .5rem;
+$card-group-margin: .25rem;
+
+// Custom control size
+$custom-control-indicator-size: 1.25rem;
 
 // stylelint-disable
 $theme-colors: () !default;
 $theme-colors: map-merge((
     primary: $primary,
-    secondary: $gray-200,
+    secondary: $gray-400,
     success: $success,
     info: $info,
     warning: $orange,
@@ -80,13 +84,6 @@ $theme-colors: map-merge((
 ), $theme-colors);
 // stylelint-enable
 
-$screen-xs: 480px;
-$screen-sm: 768px;
-$screen-md: 992px;
-$screen-lg: 1200px;
-
-$card-gutter: 1rem;
-
 // Import FontAwesome.
 @import "fontawesome";
 
@@ -95,6 +92,14 @@ $card-gutter: 1rem;
 
 // Import Core moodle CSS
 @import "moodle";
+
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+.navbar {
+    max-height: $navbar-height;
+}
 
 // Front page available courses. This is a custom feature of this theme.
 .card-deck.availablecourses {
@@ -111,7 +116,7 @@ $card-gutter: 1rem;
             display: flex;
         }
     }
-    @media (min-width: $screen-sm) {
+    @media (min-width: 480px) {
         .course-card-img {
             height: 8rem;
             width: 8rem;
@@ -122,6 +127,10 @@ $card-gutter: 1rem;
     .dashboard-card-footer {
         padding: 0.8rem;
     }
+}
+
+.button-single-icon .icon {
+    margin-right: 0;
 }
 
 .stretched-link {
