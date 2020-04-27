@@ -1,14 +1,13 @@
 // Bootstrap variables
-
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
-$gray-600: #868e96 !default;
+$gray-600: #6c757d !default;
 $gray-700: #495057 !default;
-$gray-800: #373a3c !default;
+$gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
@@ -16,26 +15,25 @@ $blue:    #1177d1 !default;
 $indigo:  #6610f2 !default;
 $purple:  #613d7c !default;
 $pink:    #e83e8c !default;
-$red:     #d9534f !default;
+$red:     #d43f3a !default;
 $orange:  #f0ad4e !default;
 $yellow:  #ff7518 !default;
-$green:   #5cb85c !default;
+$green:   #398439 !default;
 $teal:    #20c997 !default;
 $cyan:    #5bc0de !default;
 
 $primary:       $blue !default;
-$secondary:     $gray-800 !default;
 $success:       $green !default;
 $info:          $cyan !default;
-$warning:       $yellow !default;
+$warning:       $orange !default;
 $danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$secondary:     $gray-400 !default;
+
+$info-outline:    #1f7e9a;
+$warning-outline: #a6670e;
 
 // Options
 $enable-rounded: false !default;
-$enable-responsive-font-sizes: true !default;
-$rfs-base-font-size: 0.8rem !default;
 
 // Body
 $body-color:    $gray-800 !default;
@@ -43,8 +41,6 @@ $body-color:    $gray-800 !default;
 // Fonts
 $font-size-base: 0.9375rem !default;
 $headings-font-weight:   300 !default;
-
-$text-muted:    #6F7780 !default;
 
 // Navbar
 $navbar-dark-hover-color:           rgba($white, 1) !default;
@@ -74,147 +70,60 @@ $custom-control-indicator-size: 1.25rem;
 $theme-colors: () !default;
 $theme-colors: map-merge((
     primary: $primary,
-    secondary: $gray-400,
+    secondary: $secondary,
     success: $success,
     info: $info,
-    warning: $orange,
+    warning: $warning,
     danger: $danger,
-    light: $gray-100,
-    dark: $gray-800
 ), $theme-colors);
 // stylelint-enable
 
 // Import FontAwesome.
-@import "fontawesome";
+@import "fontawesome.scss";
 
 // Import All of Bootstrap
-@import "bootstrap";
+@import "bootstrap.scss";
 
 // Import Core moodle CSS
-@import "moodle";
+@import "moodle.scss";
+
+// Preset CSS
 
 body {
     -webkit-font-smoothing: antialiased;
 }
 
 .navbar {
-    max-height: $navbar-height;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
 }
 
-// Front page available courses. This is a custom feature of this theme.
-.card-deck.availablecourses {
-    margin-bottom: 2rem;
-    flex-basis: auto;
-    width: 100%;
-    flex-grow: 0;
-    flex-shrink: 0;
-
-    .card-course-image {
-        display: flex;
-        flex: 1 1 auto;
-        .card-img {
-            display: flex;
-        }
-    }
-    @media (min-width: 480px) {
-        .course-card-img {
-            height: 8rem;
-            width: 8rem;
-            background-position: center;
-            background-size: cover;
-        }
-    }
-    .dashboard-card-footer {
-        padding: 0.8rem;
-    }
+.filemanager-container,
+.filepicker-filelist,
+.content-bank-container {
+    @extend .border;
 }
 
-.button-single-icon .icon {
-    margin-right: 0;
+// Rounded user pictures
+.userpicture {
+    border-radius: 50%;
 }
 
-.stretched-link {
-  &::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    // Just in case `pointer-events: none` is set on a parent
-    pointer-events: auto;
-    content: "";
-    // IE10 bugfix, see https://stackoverflow.com/questions/16947967/ie10-hover-pseudo-class-doesnt-work-without-background-color
-    background-color: rgba(0, 0, 0, 0);
-  }
+// Reset the default styling back to the bootstrap defaults for
+// the secondary outline button because gray-200 is much too light
+// for an outline button.
+.btn-outline-secondary {
+    @include button-outline-variant($gray-600);
+    border-color: $gray-600;
 }
 
-// Hide all extra's on the page when guest users view content.
-body.guestuser {
-    &.pagelayout-incourse {
-        .navbar-bootswatch,
-        #page-footer-clear,
-        .clearheader,
-        .activity-navigation {
-            display: none !important;
-        }
-    }
-    #page-wrapper-clear #page-clear.container {
-        margin-top: 20px;
-        padding-left: 10px;
-    }
-    .clearheader {
-        padding-left: 10px;
-    }
-    div[role="main"] > h1 {
-        text-align: center;
-        @media (max-width: 767px) {
-            font-size: 1.5rem;
-        }
-    }
+.btn-outline-info {
+    @include button-outline-variant($info-outline);
 }
 
-// Our navbar looks different from Boost just to give this theme some identitiy.
-nav.fixed-top {
-    @extend .navbar-dark;
-    background-color: transparent;
-    background-image: linear-gradient(310deg,#272b53 0,#4f7296 90%);
-
-    .usermenu {
-        color: $navbar-dark-color;
-        .login a {
-            color: $navbar-dark-color;
-        }
-    }
-    a.dropdown-toggle,
-    a .usertext {
-        color: $navbar-dark-color;
-        @include hover-focus {
-            color: $navbar-dark-hover-color;
-        }
-
-        &.disabled {
-            color: $navbar-dark-disabled-color;
-        }
-    }
-    .dropdown-menu a .icon {
-        color: inherit !important; // stylelint-disable-line declaration-no-important
-    }
+.btn-outline-warning {
+    @include button-outline-variant($warning-outline);
 }
 
-// White is boring.
-.path-login {
-    @include gradient-bg($primary);
-}
+@include bg-variant(".bg-gray", $gray-200);
 
-// Replace this hard coded image with something more fun
-.bg-login-image {
-    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
-    background-position: center;
-    background-size: cover;
-}
-
-// Reset footer styles.
-.path-login #page-footer.bg-dark.text-light {
-    background-color: transparent !important;
-}
+@import "clear.scss";

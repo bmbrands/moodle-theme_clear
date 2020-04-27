@@ -32,8 +32,6 @@ use external_single_structure;
 use coding_exception;
 
 require_once($CFG->libdir . '/externallib.php');
-require_once($CFG->dirroot . '/cohort/lib.php');
-require_once($CFG->dirroot . '/local/regions/lib.php');
 
 /**
  * The arup boost external services.
@@ -74,12 +72,10 @@ class external extends external_api {
             throw new coding_exception('Error - imageid must be provided');
         }
 
-        if ($params['type'] === 'catalogue') {
-            $context = \context_coursecat::instance($params['imageid']);
-        } else if ($params['type'] === 'course') {
+        if ($params['type'] === 'course') {
             $context = \context_course::instance($params['imageid']);
         } else {
-            throw new coding_exception('Error - type must be either catalogue or course');
+            throw new coding_exception('Error - type must be course');
         }
 
         self::validate_context($context);
